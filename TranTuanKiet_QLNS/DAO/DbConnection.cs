@@ -14,7 +14,7 @@ namespace TranTuanKiet_QLNS.DAO
         }
         public SqlConnection CreateConnection()
         {
-            SqlConnection conn = new SqlConnection(@"Data Source =TRAN-TUAN-KIET\SQLEXPRESS; Initial Catalog=Customer;
+            SqlConnection conn = new SqlConnection(@"Data Source =TRAN-TUAN-KIET\SQLEXPRESS; Initial Catalog=QLNS_1;
                        User id = sa; Password = sa");
             return conn;
 

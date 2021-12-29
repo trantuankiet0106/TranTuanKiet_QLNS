@@ -20,7 +20,7 @@ namespace TranTuanKiet_QLNS.DAO
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader reader = cmd.ExecuteReader();
 
-            
+
 
             List<EmployeeDTO> lstCus = new List<EmployeeDTO>();
             DepartmentDAO are = new DepartmentDAO();
@@ -30,10 +30,9 @@ namespace TranTuanKiet_QLNS.DAO
                 cus.IDME = reader["IDEM"].ToString();
                 cus.NAME_EM = reader["NAME_EM"].ToString();
                 cus.BIRTH = DateTime.Parse(reader["BIRTH"].ToString());
-                cus.gt = (int.Parse(reader["gt"].ToString()));
+                cus.GT = reader["gt"].ToString();
                 cus.NOISINH = reader["NOISINH"].ToString();
-                //cus.department = are.ReadArea(int.Parse(reader["IDDEPART"].ToString()));
-              
+                cus.KV = are.ReadArea(int.Parse(reader["IDDEPART"].ToString()));
                 lstCus.Add(cus);
             }
             conn.Close();
@@ -45,17 +44,19 @@ namespace TranTuanKiet_QLNS.DAO
 
         public void EditEmployee(EmployeeDTO cus)
         {
+
+
             SqlConnection conn = CreateConnection();
-            conn.Open();
             SqlCommand cmd = new SqlCommand("UpdateEmployee", conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("@IDME", cus.IDME));
+            cmd.Parameters.Add(new SqlParameter("@IDEM", cus.IDME));
             cmd.Parameters.Add(new SqlParameter("@NAME_EM", cus.NAME_EM));
             cmd.Parameters.Add(new SqlParameter("@BIRTH", cus.BIRTH));
-            cmd.Parameters.Add(new SqlParameter("@gt", cus.gt));
+            cmd.Parameters.Add(new SqlParameter("@gt", cus.GT));
             cmd.Parameters.Add(new SqlParameter("@NOISINH", cus.NOISINH));
-            cmd.Parameters.Add(new SqlParameter("@department", cus.department));
+            cmd.Parameters.Add(new SqlParameter("@IDDEPART", cus.KV.ID));
+            conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
         }
@@ -63,13 +64,11 @@ namespace TranTuanKiet_QLNS.DAO
         {
 
             SqlConnection conn = CreateConnection();
-            SqlCommand cmd = new SqlCommand("DeleteDepartment", conn);
+            SqlCommand cmd = new SqlCommand("DeleteEmployee", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add(new SqlParameter("@IDME", cus.IDME));
+            cmd.Parameters.Add(new SqlParameter("@IDEM", cus.IDME));
             conn.Open();
             cmd.ExecuteNonQuery();
-
             conn.Close();
         }
         public void NewEmployee(EmployeeDTO cus)
@@ -78,15 +77,17 @@ namespace TranTuanKiet_QLNS.DAO
             SqlCommand cmd = new SqlCommand("InserteEmployee", conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("@IDME", cus.IDME));
+            cmd.Parameters.Add(new SqlParameter("@IDEM", cus.IDME));
             cmd.Parameters.Add(new SqlParameter("@NAME_EM", cus.NAME_EM));
             cmd.Parameters.Add(new SqlParameter("@BIRTH", cus.BIRTH));
-            cmd.Parameters.Add(new SqlParameter("@gt", cus.gt));
+            cmd.Parameters.Add(new SqlParameter("@gt", cus.GT));
             cmd.Parameters.Add(new SqlParameter("@NOISINH", cus.NOISINH));
-            cmd.Parameters.Add(new SqlParameter("@department", cus.department));
+            cmd.Parameters.Add(new SqlParameter("@IDDEPART", cus.KV.ID));
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
+
+
         }
     }
 }

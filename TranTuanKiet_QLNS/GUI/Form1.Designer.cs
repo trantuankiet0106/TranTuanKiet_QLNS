@@ -39,7 +39,6 @@ namespace TranTuanKiet_QLNS.GUI
             this.CBNAME = new System.Windows.Forms.ComboBox();
             this.DTNGAYSINH = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.CBGT = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +50,9 @@ namespace TranTuanKiet_QLNS.GUI
             this.THOAT = new System.Windows.Forms.Button();
             this.SUA = new System.Windows.Forms.Button();
             this.XOA = new System.Windows.Forms.Button();
+            this.TBGT = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,9 +88,9 @@ namespace TranTuanKiet_QLNS.GUI
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(263, 50);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 20);
+            this.label5.Size = new System.Drawing.Size(73, 20);
             this.label5.TabIndex = 4;
-            this.label5.Text = "NOI SINH\'";
+            this.label5.Text = "NOI SINH";
             // 
             // TBNS
             // 
@@ -123,7 +125,7 @@ namespace TranTuanKiet_QLNS.GUI
             // 
             this.DTNGAYSINH.Location = new System.Drawing.Point(674, 6);
             this.DTNGAYSINH.Name = "DTNGAYSINH";
-            this.DTNGAYSINH.Size = new System.Drawing.Size(223, 27);
+            this.DTNGAYSINH.Size = new System.Drawing.Size(305, 27);
             this.DTNGAYSINH.TabIndex = 9;
             // 
             // label1
@@ -134,16 +136,6 @@ namespace TranTuanKiet_QLNS.GUI
             this.label1.Size = new System.Drawing.Size(85, 20);
             this.label1.TabIndex = 10;
             this.label1.Text = "NGÀY SINH";
-            // 
-            // CBGT
-            // 
-            this.CBGT.AutoSize = true;
-            this.CBGT.Location = new System.Drawing.Point(706, 53);
-            this.CBGT.Name = "CBGT";
-            this.CBGT.Size = new System.Drawing.Size(98, 24);
-            this.CBGT.TabIndex = 11;
-            this.CBGT.Text = "GIỚI TÍNH";
-            this.CBGT.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -182,14 +174,14 @@ namespace TranTuanKiet_QLNS.GUI
             this.Column3.HeaderText = "NGÀY SINH";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
-            this.Column3.Width = 160;
+            this.Column3.Width = 180;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "GIỚI TÍNH";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
-            this.Column4.Width = 125;
+            this.Column4.Width = 110;
             // 
             // Column5
             // 
@@ -213,6 +205,7 @@ namespace TranTuanKiet_QLNS.GUI
             this.THEM.TabIndex = 13;
             this.THEM.Text = "THÊM";
             this.THEM.UseVisualStyleBackColor = true;
+            this.THEM.Click += new System.EventHandler(this.THEM_Click);
             // 
             // THOAT
             // 
@@ -222,6 +215,7 @@ namespace TranTuanKiet_QLNS.GUI
             this.THOAT.TabIndex = 14;
             this.THOAT.Text = "THOÁT";
             this.THOAT.UseVisualStyleBackColor = true;
+            this.THOAT.Click += new System.EventHandler(this.THOAT_Click);
             // 
             // SUA
             // 
@@ -231,6 +225,7 @@ namespace TranTuanKiet_QLNS.GUI
             this.SUA.TabIndex = 15;
             this.SUA.Text = "SỮA";
             this.SUA.UseVisualStyleBackColor = true;
+            this.SUA.Click += new System.EventHandler(this.SUA_Click);
             // 
             // XOA
             // 
@@ -240,18 +235,36 @@ namespace TranTuanKiet_QLNS.GUI
             this.XOA.TabIndex = 16;
             this.XOA.Text = "XÓA";
             this.XOA.UseVisualStyleBackColor = true;
+            this.XOA.Click += new System.EventHandler(this.XOA_Click);
+            // 
+            // TBGT
+            // 
+            this.TBGT.Location = new System.Drawing.Point(95, 101);
+            this.TBGT.Name = "TBGT";
+            this.TBGT.Size = new System.Drawing.Size(135, 27);
+            this.TBGT.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 101);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 20);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Giới tinh";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 429);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TBGT);
             this.Controls.Add(this.XOA);
             this.Controls.Add(this.SUA);
             this.Controls.Add(this.THOAT);
             this.Controls.Add(this.THEM);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.CBGT);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DTNGAYSINH);
             this.Controls.Add(this.CBNAME);
@@ -283,17 +296,19 @@ namespace TranTuanKiet_QLNS.GUI
         private System.Windows.Forms.ComboBox CBNAME;
         private System.Windows.Forms.DateTimePicker DTNGAYSINH;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox CBGT;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button THEM;
+        private System.Windows.Forms.Button THOAT;
+        private System.Windows.Forms.Button SUA;
+        private System.Windows.Forms.Button XOA;
+        private System.Windows.Forms.TextBox TBGT;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Button THEM;
-        private System.Windows.Forms.Button THOAT;
-        private System.Windows.Forms.Button SUA;
-        private System.Windows.Forms.Button XOA;
+        private System.Windows.Forms.Label label6;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

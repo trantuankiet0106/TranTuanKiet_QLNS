@@ -11,14 +11,13 @@ namespace TranTuanKiet_QLNS.DTO
         public string IDME { get; set; }
         public string NAME_EM { get; set; }
         public DateTime BIRTH { get; set; }
-        public int gt { get; set; }
+        public string GT { get; set; }
         public string NOISINH { get; set; }
-        public DepartmentDTO department { get; set; }
+        public DepartmentDTO KV { get;  set; }
         public string IDDEPART
         {
-            get { return department.NAME; }
+            get { return KV.NAME; }
         }
-
 
     }
 }
