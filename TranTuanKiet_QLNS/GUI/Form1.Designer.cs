@@ -50,9 +50,8 @@ namespace TranTuanKiet_QLNS.GUI
             this.THOAT = new System.Windows.Forms.Button();
             this.SUA = new System.Windows.Forms.Button();
             this.XOA = new System.Windows.Forms.Button();
-            this.TBGT = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.CHECK = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -237,29 +236,22 @@ namespace TranTuanKiet_QLNS.GUI
             this.XOA.UseVisualStyleBackColor = true;
             this.XOA.Click += new System.EventHandler(this.XOA_Click);
             // 
-            // TBGT
+            // CHECK
             // 
-            this.TBGT.Location = new System.Drawing.Point(95, 101);
-            this.TBGT.Name = "TBGT";
-            this.TBGT.Size = new System.Drawing.Size(135, 27);
-            this.TBGT.TabIndex = 17;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 101);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 20);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Giới tinh";
+            this.CHECK.AutoSize = true;
+            this.CHECK.Location = new System.Drawing.Point(783, 64);
+            this.CHECK.Name = "CHECK";
+            this.CHECK.Size = new System.Drawing.Size(87, 24);
+            this.CHECK.TabIndex = 19;
+            this.CHECK.Text = "Giới tính";
+            this.CHECK.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 429);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.TBGT);
+            this.Controls.Add(this.CHECK);
             this.Controls.Add(this.XOA);
             this.Controls.Add(this.SUA);
             this.Controls.Add(this.THOAT);
@@ -301,14 +293,13 @@ namespace TranTuanKiet_QLNS.GUI
         private System.Windows.Forms.Button THOAT;
         private System.Windows.Forms.Button SUA;
         private System.Windows.Forms.Button XOA;
-        private System.Windows.Forms.TextBox TBGT;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Label label6;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.CheckBox CHECK;
     }
 }
