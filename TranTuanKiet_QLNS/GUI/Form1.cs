@@ -131,7 +131,6 @@ namespace TranTuanKiet_QLNS.GUI
         }
 
 
-
         private void THOAT_Click(object sender, EventArgs e)
         {
             this.Close();
